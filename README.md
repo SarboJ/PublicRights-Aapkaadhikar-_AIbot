@@ -30,10 +30,10 @@ pip install -r requirements.txt
 BOT_TOKEN
 
 ###  4. Run server
-uvicorn app.main:app --reload
+uvicorn main:app --reload
 
 ###  5. Webhook
-curl -X POST "https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://your-domain/webhook"
+curl -X POST "https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://publicrights-aapkaadhikar-aibot.onrender.com"
 
 ⚠️ Disclaimer
 
