@@ -27,7 +27,7 @@ git clone https://github.com/SarboJ/PublicRights-Aapkaadhikar-_AIbot.git
 pip install -r requirements.txt
 
 ###  3. Add env variables
-BOT_TOKEN=your_token
+BOT_TOKEN
 
 ###  4. Run server
 uvicorn app.main:app --reload
