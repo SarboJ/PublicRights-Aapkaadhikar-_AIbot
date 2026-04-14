@@ -4,6 +4,26 @@ from reportlab.lib.enums import TA_CENTER, TA_RIGHT
 from reportlab.lib.pagesizes import A4
 from datetime import datetime
 
+def format_law_section(title, sections):
+    if not sections:
+        return ""
+
+    text = f"<b>{title}:</b><br/>"
+    for sec in sections:
+        text += f"• {sec}<br/>"
+    return text
+laws = data.get("laws", {})
+
+law_text = ""
+
+law_text += format_law_section("Indian Penal Code (IPC)", laws.get("ipc"))
+law_text += format_law_section("Criminal Procedure Code (CrPC)", laws.get("crpc"))
+law_text += format_law_section("Civil Procedure Code (CPC)", laws.get("cpc"))
+law_text += format_law_section("Consumer Law", laws.get("consumer"))
+
+if law_text:
+    content.append(Paragraph("<b>Applicable Legal Provisions:</b><br/><br/>" + law_text, styles["Normal"]))
+    content.append(Spacer(1, 12))    
 def generate_legal_notice(data, file_path="notice.pdf"):
     doc = SimpleDocTemplate(file_path, pagesize=A4)
     styles = getSampleStyleSheet()
