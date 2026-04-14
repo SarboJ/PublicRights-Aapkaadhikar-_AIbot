@@ -11,6 +11,28 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 TELEGRAM_API = f"https://api.telegram.org/bot{BOT_TOKEN}"
 
 @app.get("/")
+laws = structured.get("laws", {})
+
+def format_sections(title, items):
+    if not items:
+        return ""
+    return f"\n*{title}:*\n" + "\n".join([f"• {i}" for i in items])
+
+message = "⚖️ *Applicable Legal Provisions:*\n"
+
+message += format_sections("IPC", laws.get("ipc"))
+message += format_sections("CrPC", laws.get("crpc"))
+message += format_sections("CPC", laws.get("cpc"))
+message += format_sections("Consumer Law", laws.get("consumer"))
+
+if message.strip() == "⚖️ *Applicable Legal Provisions:*":
+    message += "\nNo direct sections identified."
+
+requests.post(f"{TELEGRAM_API}/sendMessage", json={
+    "chat_id": chat_id,
+    "text": message,
+    "parse_mode": "Markdown"
+})
 def home():
     return {"status": "PublicRights Bot Running"}
 
