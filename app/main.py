@@ -2,8 +2,8 @@ from fastapi import FastAPI, Request
 import requests
 import os
 
-from agent.py import extract_notice_fields
-from pdfbuilt.py import generate_legal_notice
+from app.agent import extract_notice_fields
+from app.pdfbuilt import generate_legal_notice
 
 app = FastAPI()
 
